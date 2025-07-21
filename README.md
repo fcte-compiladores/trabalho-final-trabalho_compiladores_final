@@ -128,6 +128,14 @@ O projeto está dividido em dois grandes blocos: **frontend** (interface) e **ba
 
 ### Módulos principais do compilador
 
+Os arquivos que implementam o compilador estão localizados em:
+
+```
+src/compiler/
+```
+
+Essa pasta contém os seguintes módulos:
+
 - `lexer.ts`  
   Responsável pela análise léxica: transforma a string de entrada em uma lista de tokens.
 
