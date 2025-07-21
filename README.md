@@ -1,79 +1,171 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Hppw7Zh2)
-# Trabalho Final
+# ExprEdu - Compilador Educacional de Expressões Matemáticas
 
-## Escopo e organização
+## Integrantes
 
-O trabalho é de tema livre dentro do escopo da disciplina de compiladores e
-consiste no desenvolvimento de alguma aplicação na área da disciplina (um
-interpretador para uma linguagem simples, compilador, analisadores de código,
-etc.)
+- Matheus Brant — Matrícula: [222037737] — Turma: [18h]
 
-O trabalho pode ser feito em grupos de até 4 pessoas.
+## Introdução
 
-## Estrutura
+**ExprEdu** é um projeto educacional interativo desenvolvido com o objetivo de ensinar os conceitos fundamentais de compiladores. Ele simula, de maneira visual e acessível, as etapas da compilação de expressões matemáticas simples, incluindo análise léxica, sintática e avaliação.
 
-Os trabalhos devem ser entregues na atividade própria no [github-classrrom](...).
-Cada repositório deve ter uma estrutura parecida com a delineada abaixo:
+O sistema aceita expressões como `2 * (3 + x)` ou `a * (b + 2)` e realiza:
 
-* **README:** o arquivo README.md na base do repositório deve descrever os
-  detalhes da implementação do código. O README deve ter algumas seções 
-  obrigatórias:
-  - **Título**: nome do projeto
-  - **Integrantes**: lista com os nomes, matrículas e turma de cada integrante.
-  - **Introdução**: deve detalhar o que o projeto implementou, quais foram as
-    estratégias e algoritmos relevantes. Se o projeto implementa uma linguagem
-    não-comum ou um subconjunto de uma linguagem comum, deve conter alguns
-    exemplos de comandos nesta linguagem, descrendo a sua sintaxe e semântica,
-    quando necessário.
-  - **Instalação**: deve detalhar os passos para instalar as dependências e
-    rodar o código do projeto. Pode ser algo simples como *"Rode
-    `uv run lox hello.lox` para executar o interpretador."*, se a linguagem de
-    implementação permitir este tipo de facilidade.
+- Tokenização da expressão
+- Construção da árvore sintática (AST)
+- Visualização da árvore
+- Avaliação da expressão com ou sem substituição de variáveis
+- Explicação passo a passo da ordem de execução
 
-    Você pode usar gerenciadores de pacotes específicos de linguagens populares
-    como uv, npm, cargo, etc, containers Docker/Podman, ou `.nix`.
-  - **Exemplos**: o projeto deve conter uma pasta "exemplos" com alguns arquivos
-    na linguagem de programação implementada. Deve conter exemplos com graus
-    variáveis de complexidade. Algo como: hello world, fibonacci, função
-    recursiva, alguma estrutura de dados e para finalizar um algoritmo um pouco
-    mais elaborado como ordenamento de listas, busca binária, etc.
-    
-    Note que isto é apenas um guia da ordem de dificuldade dos problemas.
-    Algumas linguagens sequer permitem a implementação de alguns dos exemplos
-    acima.
-  - **Referências**: descreva as referências que você utilizou para a
-    implementação da linguagem. Faça uma breve descrição do papel de cada
-    referência ou como ela foi usada no projeto. Caso você tenha usado algum 
-    código existente como referência, descreva as suas contribuições originais
-    para o projeto.
-  - **Estrutura do código**: faça uma descrição da estrutura geral do código
-    discutindo os módulos, classes, estruturas de dados ou funções principais. 
-    Explicite onde as etapas tradicionais de compilação (análise léxica, 
-    sintática, semântica, etc) são realizadas, quando relevante.
-  - **Bugs/Limitações/problemas conhecidos**: discuta as limitações do seu
-    projeto e problemas conhecidos e coisas que poderiam ser feitas para
-    melhorá-lo no futuro. Note: considere apenas melhorias incrementais e não
-    melhorias grandes como: "reimplementar tudo em Rust".
-* **Código:** O codigo fonte deve estar presente no repositório principal junto com
-  a declaração das suas dependências. Cada linguagem possui um mecanismo
-  específico para isso, mas seria algo como o arquivo pyproject.toml em Python
-  ou package.json no caso de Javascript.
+A linguagem aceita é simples, composta por números reais, variáveis alfabéticas, operadores aritméticos (`+`, `-`, `*`, `/`) e parênteses. A avaliação respeita a precedência usual dos operadores e a associatividade à esquerda.
 
-## Critérios
+Exemplos válidos:
 
-Cada trabalho começa com 100% e pode receber penalizações ou bônus de acordo com
-os critérios abaixo:
+- `2 + 3 * 4`
+- `a * (b + 2)`
+- `-x + 5`
+- `(1 + 2) * (3 + 4)`
 
-- Ausência do README: -50%
-- Instruções de instalação não funcionam: até -20%
-- Referências não atribuídas ou falta de referâncias: -10%
-- Código confuso ou mal organizado: até -15%
-- Falta de clareza em apresentar as técnicas e etapas de compilação: -15%
-- Bugs e limitações sérias na implementação: até -25%
-- Escopo reduzido, ou implementação insuficiente: até 25%
-- Uso de código não atribuído/plágio: até -100%
-- Repositório bem estruturado e organizado: até 10%
-- Linguagem com conceitos originais/interessantes: até +15%
-- Testes unitários: até +15%, dependendo da cobertura
+## Instalação
 
-Após aplicar todos os bônus, a nota é truncada no intervalo 0-100%. 
+### Pré-requisitos
+
+- Node.js versão 16 ou superior
+- npm ou yarn
+
+### Passos para execução
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/fcte-compiladores/trabalho-final-trabalho_compiladores_final.git
+   cd expredu
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Execute o projeto em modo de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse no navegador:
+   ```
+   http://localhost:5173
+   ```
+
+### Executar os testes
+
+Para executar os testes unitários:
+```bash
+npm run test
+```
+
+
+## Exemplos
+
+O projeto inclui exemplos variados com diferentes níveis de complexidade. Alguns exemplos básicos:
+
+### Exemplo 1: Precedência de operadores
+
+Entrada:
+```
+2 + 3 * 4
+```
+Resultado:
+```
+14
+```
+Explicação:
+```
+A multiplicação ocorre antes da adição.
+```
+
+### Exemplo 2: Uso de parênteses
+
+Entrada:
+```
+(2 + 3) * 4
+```
+Resultado:
+```
+20
+```
+
+### Exemplo 3: Variáveis com substituição
+
+Entrada:
+```
+a * (b + 2)
+```
+Variáveis:
+```
+a = 3, b = 1
+```
+Resultado:
+```
+9
+```
+
+
+## Referências
+
+- **Crafting Interpreters** – Robert Nystrom  
+  Utilizado como referência conceitual para estrutura de AST, parsing recursivo e etapas de execução.
+
+- **Dragon Book** – Compilers: Principles, Techniques, and Tools  
+  Utilizado como base teórica para a estrutura de compiladores.
+
+- **Modern Compiler Implementation** – Andrew Appel  
+  Apoio na organização modular das fases do compilador.
+
+Todas as implementações foram feitas do zero. Não foi utilizado código de terceiros, apenas conceitos e algoritmos descritos nas referências acima e IA para o frontend.
+
+## Estrutura do Código
+
+O projeto está dividido em dois grandes blocos: **frontend** (interface) e **backend** (núcleo do compilador). O foco aqui é o backend.
+
+### Módulos principais do compilador
+
+- `lexer.ts`  
+  Responsável pela análise léxica: transforma a string de entrada em uma lista de tokens.
+
+- `parser.ts`  
+  Implementa um parser recursivo que constrói a AST a partir dos tokens.
+
+- `compiler.ts`  
+  Define os tipos TypeScript para os nós da AST, tokens e erros.
+
+- `evaluator.ts`  
+  Avalia a AST com ou sem substituição de variáveis. Inclui versão step-by-step com descrição textual da ordem de execução.
+
+- `visualizer.ts`  
+  Percorre a AST e gera uma visualização em árvore ASCII.
+
+### Componentes de interface (frontend)
+
+- `ExpressionCompiler.tsx`  
+  Componente principal que conecta o compilador ao input do usuário.
+
+- `InputPanel.tsx`  
+  Componente de entrada da expressão e definição de variáveis.
+
+- `ResultsPanel.tsx`  
+  Componente que exibe tokens, AST e resultado da avaliação.
+
+### Tecnologias utilizadas
+
+- React + TypeScript  
+- Tailwind CSS  
+- Vite (build)  
+- Vitest + Testing Library (testes)  
+- Lucide React (ícones)
+
+## Bugs, Limitações e Possíveis Melhorias
+
+- A linguagem ainda não suporta exponenciação (`^`), módulo (`%`), funções matemáticas ou operadores lógicos.
+- A análise de erros pode ser melhorada com mensagens específicas por tipo de erro e uso de `CompilerError` com posição detalhada.
+- A AST só é visualizada como texto (ASCII). Futuramente, poderia ser exibida como gráfico com `viz.js`.
+- Não há análise semântica completa (ex: verificação de tipos).
+
